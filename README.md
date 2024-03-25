@@ -1,1 +1,1 @@
-# 42_push_swap
+# 42school PushSwap Project
