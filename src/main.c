@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/03/20 18:07:41 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:15:35 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,32 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc == 1)
-		exit(0);
+	t_node *list_a;
+	char **args_str;
+	int n_args;
+
+	list_a = NULL;
+	args_str = NULL;
+	n_args = 0;
 	if (argc == 2)
 	{
-		//argv = ft_split(argv[1], ' ');
-		//aggiornare argc con il numero di argomenti
+		args_str = ft_split(argv[1], ' ');
+		n_args = ft_splitlen(args_str);
+		check_and_init(&list_a, args_str, n_args);
 	}
-	input_check(argc, argv);
-	
-	int i = 0;
-	while(i < argc)
+	else if (argc > 2)
+		check_and_init(&list_a, argv + 1, argc - 1);
+
+	check_for_dup(list_a);
+
+	if (list_a != NULL)
 	{
-		ft_printf("%s ", argv[i]);
-		i++;
+		t_node *current = list_a;
+		while(current)
+		{
+			ft_printf("value: %d\n", current->data);
+			current = current->next;
+		}
 	}
-	//sorting
-	return (0);
+
 }

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/03/20 10:53:49 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:57:51 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,30 @@
 
 #include "../lib/ft_printf/ft_printf.h"
 #include "../lib/libft/libft.h"
+#include <stdbool.h>
 
-//input_check
-void	input_check(int argc, char *argv[]);
-void	check_integers(int argc, char *argv[]);
-void	check_int_size(int argc, char *argv[]);
-void	check_doubles(int argc, char *argv[]);
-void	print_error_and_exit(int error_code);
+
+typedef struct s_node
+{
+	int data;
+	
+	struct s_node *next;
+	struct s_node *prev;
+}t_node;
+
+//utils
+int	ft_splitlen(char **matrix);
+
+//check_and_init
+void	check_and_init(t_node **list, char **args, int n_args);
+bool	check_number(char *arg);
+void	insert_in_stack(t_node **head, int value);
+t_node *find_last_node(t_node *head);
+
+//check_for_dup
+bool check_for_dup(t_node *head);
+
+//ft_error
+void	ft_error(char *message);
 
 #endif
