@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 19:27:32 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:35:49 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ void	check_and_init(t_node **list, char **args, int n_args)
 			if (number >= INT_MIN && number <= INT_MAX)
 				insert_in_stack(list, number);
 			else
-				ft_error("A number entered is outside the \
-				allowed range for integers.");
+				ft_error(ERROR_SIZE);
 		}
 		else
-			ft_error("Only numbers in base 10 accepted.");
+			ft_error(ERROR_INVALID);
 		i++;
 	}
 }
