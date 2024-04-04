@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 13:16:04 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:27:32 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 void	check_and_init(t_node **list, char **args, int n_args)
 {
-	int i;
+	int		i;
+	long	number;
 
 	i = 0;
 	while (i < n_args)
 	{
-		if(check_number(args[i]))
+		if (check_number(args[i]))
 		{
-			long number = ft_atoll(args[i]);
+			number = ft_atoll(args[i]);
 			if (number >= INT_MIN && number <= INT_MAX)
 				insert_in_stack(list, number);
 			else
-				ft_error("Check the size of your numbers.");
+				ft_error("A number entered is outside the \
+				allowed range for integers.");
 		}
 		else
-			ft_error("Only numbers accepted.");
-			
+			ft_error("Only numbers in base 10 accepted.");
 		i++;
 	}
 }
@@ -38,14 +39,14 @@ void	check_and_init(t_node **list, char **args, int n_args)
 
 bool	check_number(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
-	while(arg[i])
+	while (arg[i])
 	{
-		if(!(arg[i] >= '0' && arg[i] <= '9'))
+		if (!(arg[i] >= '0' && arg[i] <= '9'))
 			return (0);
 		i++;
 	}
@@ -54,18 +55,23 @@ bool	check_number(char *arg)
 
 void	insert_in_stack(t_node **head, int value)
 {
+	t_node	*new_node;
+	t_node	*last;
+
+	new_node = NULL;
+	last = NULL;
 	if (*head == NULL)
 	{
-		t_node *new_node = malloc(sizeof(t_node));
+		new_node = malloc(sizeof(t_node));
 		new_node->data = value;
-		new_node->next = new_node->prev = NULL;
+		new_node->next = NULL;
+		new_node->prev = NULL;
 		*head = new_node;
 	}
-
 	else
 	{
-		t_node *last = find_last_node(*head);
-		t_node *new_node = malloc(sizeof(t_node));
+		last = find_last_node(*head);
+		new_node = malloc(sizeof(t_node));
 		new_node->data = value;
 		new_node->next = NULL;
 		new_node->prev = last;
@@ -73,16 +79,14 @@ void	insert_in_stack(t_node **head, int value)
 	}
 }
 
-t_node *find_last_node(t_node *head)
+t_node	*find_last_node(t_node *head)
 {
-	t_node *current;
-
+	t_node	*current;
 
 	current = head;
-	if(!head)
+	if (!head)
 		return (NULL);
-	while(current->next)
+	while (current->next)
 		current = current->next;
 	return (current);
 }
-

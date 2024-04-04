@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:46:16 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 13:16:27 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:16:43 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 bool	check_for_dup(t_node *head)
 {
-	t_node *current;
-	t_node *compare;
+	t_node	*current;
+	t_node	*compare;
 
 	current = head;
-	while(current)
+	while (current)
 	{
 		compare = current->next;
-		while(compare)
+		while (compare)
 		{
-			if(current->data == compare->data)
-				ft_error("Each number cannot occur twice.");
+			if (current->data == compare->data)
+				ft_error("A number cannot occur twice.");
 			compare = compare->next;
 		}
 		current = current->next;

@@ -7,7 +7,7 @@ RESET = \e[0m
 #Project
 NAME = push_swap
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRC_DIR = ./src
 SRCS = $(SRC_DIR)/*.c

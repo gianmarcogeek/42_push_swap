@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:40:49 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 12:41:09 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:17:55 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	ft_splitlen(char **matrix)
 {
-	int i = 0;
-	while(matrix[i])
+	int	i;
+
+	i = 0;
+	while (matrix[i])
 		i++;
 	return (i);
 }
