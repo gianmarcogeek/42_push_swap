@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 19:35:49 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 03:24:02 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ bool	check_number(char *arg)
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
+	if(arg[i] == '\0')
+		return (0);
 	while (arg[i])
 	{
 		if (!(arg[i] >= '0' && arg[i] <= '9'))
 			return (0);
 		i++;
 	}
-	return (1);
+	return(1);
 }
 
 void	insert_in_stack(t_node **head, int value)
@@ -64,7 +66,6 @@ void	insert_in_stack(t_node **head, int value)
 		new_node = malloc(sizeof(t_node));
 		new_node->data = value;
 		new_node->next = NULL;
-		new_node->prev = NULL;
 		*head = new_node;
 	}
 	else
@@ -73,7 +74,6 @@ void	insert_in_stack(t_node **head, int value)
 		new_node = malloc(sizeof(t_node));
 		new_node->data = value;
 		new_node->next = NULL;
-		new_node->prev = last;
 		last->next = new_node;
 	}
 }

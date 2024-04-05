@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 19:22:26 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 05:21:13 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,46 @@
 
 int	main(int argc, char *argv[])
 {
-	t_node	*list_a;
+	t_node	*stack_a;
+	t_node	*stack_b;
+	t_node *current;
 	char	**args_str;
 	int		n_args;
 
-	list_a = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
+	current = NULL;
 	args_str = NULL;
 	n_args = 0;
 	if (argc == 2)
 	{
 		args_str = ft_split(argv[1], ' ');
 		n_args = ft_splitlen(args_str);
-		check_and_init(&list_a, args_str, n_args);
+		check_and_init(&stack_a, args_str, n_args);
 	}
 	else if (argc > 2)
-		check_and_init(&list_a, argv + 1, argc - 1);
-	check_for_dup(list_a);
+		check_and_init(&stack_a, argv + 1, argc - 1);
+	check_for_dup(stack_a);
 	
-	if (list_a != NULL)
+	if (stack_a != NULL)
 	{
-		t_node *current = list_a;
+		current = stack_a;
+		while(current)
+		{
+			ft_printf("value: %d\n", current->data);
+			current = current->next;
+		}
+	}
+	
+	ft_printf("\n");
+	
+	push(&stack_a, &stack_b, 'a', 1);
+	
+	ft_printf("\n");
+	
+	if (stack_a != NULL)
+	{
+		current = stack_a;
 		while(current)
 		{
 			ft_printf("value: %d\n", current->data);
@@ -41,3 +61,4 @@ int	main(int argc, char *argv[])
 		}
 	}
 }
+

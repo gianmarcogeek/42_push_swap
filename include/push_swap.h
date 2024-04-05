@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 19:38:59 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 05:11:16 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,17 @@ typedef struct s_node
 	int				data;
 
 	struct s_node	*next;
-	struct s_node	*prev;
 }	t_node;
+	// if (list_a != NULL)
+	// {
+	// 	current = list_a;
+	// 	ft_printf("\n\nafter ...:\n\n");
+	// 	while(current)
+	// 	{
+	// 		ft_printf("value: %d\n", current->data);
+	// 		current = current->next;
+	// 	}
+	// }
 
 //utils
 int		ft_splitlen(char **matrix);
@@ -44,4 +53,9 @@ bool	check_for_dup(t_node *head);
 //ft_error
 void	ft_error(char *message);
 
+//operations
+void	swap(t_node **lst, char stack, bool print);
+void	push(t_node **stack_a, t_node **stack_b, char stack, bool print);
+void	rotate(t_node **lst, char stack, bool print);
+void	rrotate(t_node **lst, char stack, bool print);
 #endif
