@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 05:21:13 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 06:21:10 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,11 @@ int	main(int argc, char *argv[])
 		}
 	}
 	
-	ft_printf("\n");
+	push(&stack_a, &stack_b, 'b', 1);
 	
-	push(&stack_a, &stack_b, 'a', 1);
-	
-	ft_printf("\n");
-	
-	if (stack_a != NULL)
+	if (stack_b != NULL)
 	{
-		current = stack_a;
+		current = stack_b;
 		while(current)
 		{
 			ft_printf("value: %d\n", current->data);

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 05:11:16 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 06:04:24 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	swap(t_node **lst, char stack, bool print);
 void	push(t_node **stack_a, t_node **stack_b, char stack, bool print);
 void	rotate(t_node **lst, char stack, bool print);
 void	rrotate(t_node **lst, char stack, bool print);
+void	do_both(t_node **stack_a, t_node **stack_b, char *move);
 #endif

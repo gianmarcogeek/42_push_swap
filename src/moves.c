@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_a.c                                     :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 05:12:28 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 06:22:20 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap(t_node **lst, char stack, bool print)
 {
 	t_node *tmp;
 
-	if(!lst || !((*lst)->next))
+	if(!lst || !(*lst) || !((*lst)->next))
 		return ;
 	tmp = *lst;
 	*lst = (*lst)->next;
@@ -77,4 +77,27 @@ void	push(t_node **stack_a, t_node **stack_b, char stack, bool print)
 	}
 	if (print)
 		ft_printf("p%c\n", stack);
+}
+
+void	do_both(t_node **stack_a, t_node **stack_b, char *move)
+{
+	
+	if(ft_strncmp(move, "swap", 4) == 0)
+	{
+		swap(stack_a, 'a', 0);
+		swap(stack_b, 'b', 0);
+		ft_printf("ss\n");
+	}
+	else if(ft_strncmp(move, "rotate", 6) == 0)
+	{
+		rotate(stack_a, 'a', 0);
+		rotate(stack_b, 'b', 0);
+		ft_printf("rr\n");
+	}
+	else if(ft_strncmp(move, "rrotate", 7) == 0)
+	{
+		rrotate(stack_a, 'a', 0);
+		rrotate(stack_b, 'b', 0);
+		ft_printf("rrr\n");
+	}
 }
