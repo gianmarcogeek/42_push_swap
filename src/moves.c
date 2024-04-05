@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 06:22:20 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:42:48 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,22 @@ void	push(t_node **stack_a, t_node **stack_b, char stack, bool print)
 {
 	t_node *tmp;
 	
-	if (stack == 'a')
+	if (stack == 'b' && *stack_a)
 	{
 		tmp = *stack_a;
 		*stack_a = (*stack_a)->next;
 		tmp->next = *stack_b;
 		*stack_b = tmp;
 	}
-	if (stack == 'b')
+	else if (stack == 'a' && *stack_b)
 	{
 		tmp = *stack_b;
 		*stack_b = (*stack_b)->next;
 		tmp->next = *stack_a;
 		*stack_a = tmp;
 	}
+	else
+		return ;
 	if (print)
 		ft_printf("p%c\n", stack);
 }

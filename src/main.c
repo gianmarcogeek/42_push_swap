@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 06:21:10 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:43:28 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char *argv[])
 		}
 	}
 	
+	push(&stack_a, &stack_b, 'b', 1);
 	push(&stack_a, &stack_b, 'b', 1);
 	
 	if (stack_b != NULL)
