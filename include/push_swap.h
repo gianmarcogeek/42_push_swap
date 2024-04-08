@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 06:04:24 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:43:52 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,10 @@ typedef struct s_node
 
 	struct s_node	*next;
 }	t_node;
-	// if (list_a != NULL)
-	// {
-	// 	current = list_a;
-	// 	ft_printf("\n\nafter ...:\n\n");
-	// 	while(current)
-	// 	{
-	// 		ft_printf("value: %d\n", current->data);
-	// 		current = current->next;
-	// 	}
-	// }
 
 //utils
 int		ft_splitlen(char **matrix);
+void	display_stacks(t_node *stack_a, t_node *stack_b);
 
 //check_and_init
 void	check_and_init(t_node **list, char **args, int n_args);

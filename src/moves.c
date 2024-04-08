@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 14:42:48 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:03:43 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	rotate(t_node **lst, char stack, bool print)
 	t_node *last;
 	t_node *tmp;
 
+	if(!lst || !(*lst))
+		return ;
 	last = find_last_node(*lst);
 	tmp = *lst;
 
@@ -46,6 +48,8 @@ void	rrotate(t_node **lst, char stack, bool print)
 	t_node *last;
 	t_node *new_last;
 
+	if(!lst || !(*lst))
+		return ;
 	new_last = *lst;
 	last = find_last_node(*lst);
 	while(new_last->next->next)

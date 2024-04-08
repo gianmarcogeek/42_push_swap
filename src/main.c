@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 14:43:28 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:06:18 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ int	main(int argc, char *argv[])
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
-	t_node *current;
 	char	**args_str;
 	int		n_args;
 
 	stack_a = NULL;
 	stack_b = NULL;
-	current = NULL;
 	args_str = NULL;
 	n_args = 0;
 	if (argc == 2)
@@ -35,27 +33,18 @@ int	main(int argc, char *argv[])
 		check_and_init(&stack_a, argv + 1, argc - 1);
 	check_for_dup(stack_a);
 	
-	if (stack_a != NULL)
-	{
-		current = stack_a;
-		while(current)
-		{
-			ft_printf("value: %d\n", current->data);
-			current = current->next;
-		}
-	}
-	
+	display_stacks(stack_a, stack_b);
+
 	push(&stack_a, &stack_b, 'b', 1);
 	push(&stack_a, &stack_b, 'b', 1);
+	rotate(&stack_b, 'b', 1);
 	
-	if (stack_b != NULL)
-	{
-		current = stack_b;
-		while(current)
-		{
-			ft_printf("value: %d\n", current->data);
-			current = current->next;
-		}
-	}
+	display_stacks(stack_a, stack_b);
+	// if (args_str)
+	// {
+	// 	//freematrix
+	// }
+	//free stacks
+	return (0);
 }
 
