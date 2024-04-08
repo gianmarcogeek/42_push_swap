@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_and_init.c                                   :+:      :+:    :+:   */
+/*   input_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/05 20:22:28 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:32:41 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	check_and_init(t_node **list, char **args, int n_args)
+void	check_and_init(t_node **head, char **args, int n_args)
 {
 	int		i;
 	long	number;
@@ -24,7 +24,7 @@ void	check_and_init(t_node **list, char **args, int n_args)
 		{
 			number = ft_atoll(args[i]);
 			if (number >= INT_MIN && number <= INT_MAX)
-				insert_in_stack(list, number);
+				insert_in_stack(head, number);
 			else
 				ft_error(ERROR_SIZE);
 		}
@@ -33,8 +33,6 @@ void	check_and_init(t_node **list, char **args, int n_args)
 		i++;
 	}
 }
-
-/**********************/
 
 bool	check_number(char *arg)
 {
@@ -54,38 +52,22 @@ bool	check_number(char *arg)
 	return(1);
 }
 
-void	insert_in_stack(t_node **head, int value)
-{
-	t_node	*new_node;
-	t_node	*last;
-
-	new_node = NULL;
-	last = NULL;
-	if (*head == NULL)
-	{
-		new_node = malloc(sizeof(t_node));
-		new_node->data = value;
-		new_node->next = NULL;
-		*head = new_node;
-	}
-	else
-	{
-		last = find_last_node(*head);
-		new_node = malloc(sizeof(t_node));
-		new_node->data = value;
-		new_node->next = NULL;
-		last->next = new_node;
-	}
-}
-
-t_node	*find_last_node(t_node *head)
+bool	check_for_dup(t_node *head)
 {
 	t_node	*current;
+	t_node	*compare;
 
 	current = head;
-	if (!head)
-		return (NULL);
-	while (current->next)
+	while (current)
+	{
+		compare = current->next;
+		while (compare)
+		{
+			if (current->data == compare->data)
+				ft_error(ERROR_DOUBLE);
+			compare = compare->next;
+		}
 		current = current->next;
-	return (current);
+	}
+	return (0);
 }

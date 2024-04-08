@@ -6,78 +6,78 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 11:03:43 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:32:32 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	swap(t_node **lst, char stack, bool print)
+void	swap(t_node **head, char stack, bool print)
 {
 	t_node *tmp;
 
-	if(!lst || !(*lst) || !((*lst)->next))
+	if(!head || !(*head) || !((*head)->next))
 		return ;
-	tmp = *lst;
-	*lst = (*lst)->next;
-	tmp->next = (*lst)->next;
-	(*lst)->next = tmp;
+	tmp = *head;
+	*head = (*head)->next;
+	tmp->next = (*head)->next;
+	(*head)->next = tmp;
 	if(print)
 		ft_printf("s%c\n", stack);
 }
 
-void	rotate(t_node **lst, char stack, bool print)
+void	rotate(t_node **head, char stack, bool print)
 {
 	t_node *last;
 	t_node *tmp;
 
-	if(!lst || !(*lst))
+	if(!head || !(*head))
 		return ;
-	last = find_last_node(*lst);
-	tmp = *lst;
+	last = find_last_node(*head);
+	tmp = *head;
 
-	*lst = (*lst)->next;
+	*head = (*head)->next;
 	last->next = tmp;
 	tmp->next = NULL;
 	if(print)
 		ft_printf("r%c\n", stack);
 }
 
-void	rrotate(t_node **lst, char stack, bool print)
+void	rrotate(t_node **head, char stack, bool print)
 {
 	t_node *last;
 	t_node *new_last;
 
-	if(!lst || !(*lst))
+	if(!head || !(*head))
 		return ;
-	new_last = *lst;
-	last = find_last_node(*lst);
+	new_last = *head;
+	last = find_last_node(*head);
 	while(new_last->next->next)
 		new_last = new_last->next;
 	new_last->next = NULL;
-	last->next = *lst;
-	*lst = last;
+	last->next = *head;
+	*head = last;
 	if(print)
 		ft_printf("rr%c\n", stack);
 }
 
-void	push(t_node **stack_a, t_node **stack_b, char stack, bool print)
+void	push(t_node **head_a, t_node **head_b, char stack, bool print)
 {
 	t_node *tmp;
 	
-	if (stack == 'b' && *stack_a)
+	if (stack == 'b' && *head_a)
 	{
-		tmp = *stack_a;
-		*stack_a = (*stack_a)->next;
-		tmp->next = *stack_b;
-		*stack_b = tmp;
+		tmp = *head_a;
+		*head_a = (*head_a)->next;
+		tmp->next = *head_b;
+		*head_b = tmp;
 	}
-	else if (stack == 'a' && *stack_b)
+	else if (stack == 'a' && *head_b)
 	{
-		tmp = *stack_b;
-		*stack_b = (*stack_b)->next;
-		tmp->next = *stack_a;
-		*stack_a = tmp;
+		tmp = *head_b;
+		*head_b = (*head_b)->next;
+		tmp->next = *head_a;
+		*head_a = tmp;
 	}
 	else
 		return ;
@@ -85,25 +85,25 @@ void	push(t_node **stack_a, t_node **stack_b, char stack, bool print)
 		ft_printf("p%c\n", stack);
 }
 
-void	do_both(t_node **stack_a, t_node **stack_b, char *move)
+void	do_both(t_node **head_a, t_node **head_b, char *move)
 {
 	
 	if(ft_strncmp(move, "swap", 4) == 0)
 	{
-		swap(stack_a, 'a', 0);
-		swap(stack_b, 'b', 0);
+		swap(head_a, 'a', 0);
+		swap(head_b, 'b', 0);
 		ft_printf("ss\n");
 	}
 	else if(ft_strncmp(move, "rotate", 6) == 0)
 	{
-		rotate(stack_a, 'a', 0);
-		rotate(stack_b, 'b', 0);
+		rotate(head_a, 'a', 0);
+		rotate(head_b, 'b', 0);
 		ft_printf("rr\n");
 	}
 	else if(ft_strncmp(move, "rrotate", 7) == 0)
 	{
-		rrotate(stack_a, 'a', 0);
-		rrotate(stack_b, 'b', 0);
+		rrotate(head_a, 'a', 0);
+		rrotate(head_b, 'b', 0);
 		ft_printf("rrr\n");
 	}
 }

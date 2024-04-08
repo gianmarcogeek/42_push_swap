@@ -1,33 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_for_dup.c                                    :+:      :+:    :+:   */
+/*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/04 12:46:16 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/04 19:35:05 by gpuscedd         ###   ########.fr       */
+/*   Created: 2024/04/08 17:36:30 by gpuscedd          #+#    #+#             */
+/*   Updated: 2024/04/08 18:49:33 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-bool	check_for_dup(t_node *head)
+void	free_all(t_node **head_a, t_node **head_b, char **matrix, int argc)
 {
-	t_node	*current;
-	t_node	*compare;
-
-	current = head;
-	while (current)
-	{
-		compare = current->next;
-		while (compare)
-		{
-			if (current->data == compare->data)
-				ft_error(ERROR_DOUBLE);
-			compare = compare->next;
-		}
-		current = current->next;
-	}
-	return (0);
+	if (argc == 2)
+		free_matrix(matrix);
+	if (*head_a)
+		free_stack(head_a);
+	if (*head_b)
+		free_stack(head_b);	
 }
+void	free_matrix(char **matrix)
+{
+	int i;
+
+	i = 0;
+	while(matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix[i]);
+	free(matrix);
+}
+
+void	free_stack(t_node **head)
+{
+	t_node *temp;
+
+	while(*head)
+	{
+		temp = *head;
+		*head = (*head)->next;
+		free(temp);
+	}
+}
+
