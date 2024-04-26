@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 18:40:28 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:19:19 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char *argv[])
 	stack_b = NULL;
 	args_str = NULL;
 	n_args = 0;
+	if (argc < 2)
+		exit(1) ;
 	if (argc == 2)
 	{
 		args_str = ft_split(argv[1], ' ');
@@ -38,8 +40,7 @@ int	main(int argc, char *argv[])
 	
 	display_stacks(stack_a, stack_b);
 
-	//sort(&stack_a, &stack_b);
-	push(&stack_a, &stack_b, 'b', 1);
+	//sort(&stack_a, &stack_b, n_args);
 	
 	display_stacks(stack_a, stack_b);
 	

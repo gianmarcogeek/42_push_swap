@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:06:43 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 17:07:17 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:03:29 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,18 @@ t_node	*find_last_node(t_node *head)
 		current = current->next;
 	return (current);
 }
+
+// size_t	list_size(t_node *head)
+// {
+// 	t_node *current;
+// 	size_t i;
+
+// 	current = head;
+// 	i = 0;
+// 	while(current)
+// 	{
+// 		i++;
+// 		current = current->next;
+// 	}
+// 	return (i);
+// }

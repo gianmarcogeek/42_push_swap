@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 18:09:39 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/04/08 23:18:37 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ void	do_both(t_node **head_a, t_node **head_b, char *move);
 void	free_all(t_node **head_a, t_node **head_b, char **matrix, int argc);
 void	free_matrix(char **matrix);
 void	free_stack(t_node **head);
+
+//sort
+void	sort(t_node **stack_a, t_node **stack_b, int n_args);
+
 
 #endif
