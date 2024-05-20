@@ -6,15 +6,16 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:40:49 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 17:37:43 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:40:10 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_error(char *message)
+void	ft_error(t_vars *vars, char *message)
 {
-	ft_printf("\n\e[41m\e[1mError!\e[0m %s\n\n", message);
+	ft_printf("\n\e[41m\e[1m Error! \e[0m %s\n\n", message);
+	free_all(vars);
 	exit(1);
 }
 

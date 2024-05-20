@@ -6,13 +6,13 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 17:32:32 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:45:41 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	swap(t_node **head, char stack, bool print)
+void	swap(t_node **head, char stack, int print)
 {
 	t_node *tmp;
 
@@ -26,7 +26,7 @@ void	swap(t_node **head, char stack, bool print)
 		ft_printf("s%c\n", stack);
 }
 
-void	rotate(t_node **head, char stack, bool print)
+void	rotate(t_node **head, char stack, int print)
 {
 	t_node *last;
 	t_node *tmp;
@@ -43,7 +43,7 @@ void	rotate(t_node **head, char stack, bool print)
 		ft_printf("r%c\n", stack);
 }
 
-void	rrotate(t_node **head, char stack, bool print)
+void	rrotate(t_node **head, char stack, int print)
 {
 	t_node *last;
 	t_node *new_last;
@@ -61,7 +61,7 @@ void	rrotate(t_node **head, char stack, bool print)
 		ft_printf("rr%c\n", stack);
 }
 
-void	push(t_node **head_a, t_node **head_b, char stack, bool print)
+void	push(t_node **head_a, t_node **head_b, char stack, int print)
 {
 	t_node *tmp;
 	

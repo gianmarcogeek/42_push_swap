@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/18 12:19:19 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:28:41 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,19 @@
 
 int	main(int argc, char *argv[])
 {
-	t_node	*stack_a;
-	t_node	*stack_b;
-	char	**args_str;
-	size_t		n_args;
+	t_vars	vars;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	args_str = NULL;
-	n_args = 0;
-	if (argc < 2)
-		exit(1) ;
-	if (argc == 2)
-	{
-		args_str = ft_split(argv[1], ' ');
-		n_args = matrix_len(args_str);
-	}
-	else if (argc > 2)
-	{
-		args_str = argv + 1;
-		n_args = argc - 1;
-	}
-	check_and_init(&stack_a, args_str, n_args);
-	check_for_dup(stack_a);
+	init_vars(&vars, argc, argv);
 	
-	display_stacks(stack_a, stack_b);
+	check_and_push(&vars);
 
-	//sort(&stack_a, &stack_b, n_args);
+	display_stacks(vars.stack_a, vars.stack_b);
+
+	sort(&vars);
 	
-	display_stacks(stack_a, stack_b);
+	display_stacks(vars.stack_a, vars.stack_b);
 	
-	free_all(&stack_a, &stack_b, args_str, argc);
+	free_all(&vars);
 
 	return (0);
 }

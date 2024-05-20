@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 23:18:37 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:16:31 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,62 @@
 
 # include "../lib/ft_printf/ft_printf.h"
 # include "../lib/libft/libft.h"
-# include <stdbool.h>
 
-# define ERROR_INVALID "Only numbers in base 10 accepted."
+# define ERROR_INVALID "Invalid input."
 # define ERROR_SIZE "A number is outside the allowed range for integers."
 # define ERROR_DOUBLE "A number cannot occur twice."
 
 typedef struct s_node
 {
 	int				data;
+	int				push_cost;
 
+
+	struct s_node	*target;
 	struct s_node	*next;
 }	t_node;
+
+typedef struct s_vars
+{
+	t_node	*stack_a;
+	t_node	*stack_b;
+	char	**args_str;
+	int		n_args;
+	int		og_argc;
+}	t_vars;
 
 //utils
 int		matrix_len(char **matrix);
 void	display_stacks(t_node *head_a, t_node *head_b);
-void	ft_error(char *message);
+void	ft_error(t_vars *vars, char *message);
+void	init_vars(t_vars *vars, int argc, char *argv[]);
 
 //list_utils
 void	insert_in_stack(t_node **head, int value);
 t_node	*find_last_node(t_node *head);
+int		list_size(t_node *head);
+t_node *find_biggest(t_node *head);
+t_node *find_smallest(t_node *head);
+t_node *find_smallest_bigger(t_node *head, int data);
+
 
 //input_checks
-void	check_and_init(t_node **head, char **args, int n_args);
-bool	check_number(char *arg);
-bool	check_for_dup(t_node *head);
+void	check_and_push(t_vars *vars);
+
 //moves
-void	swap(t_node **head, char stack, bool print);
-void	push(t_node **head_a, t_node **head_b, char stack, bool print);
-void	rotate(t_node **head, char stack, bool print);
-void	rrotate(t_node **head, char stack, bool print);
+void	swap(t_node **head, char stack, int print);
+void	push(t_node **head_a, t_node **head_b, char stack, int print);
+void	rotate(t_node **head, char stack, int print);
+void	rrotate(t_node **head, char stack, int print);
 void	do_both(t_node **head_a, t_node **head_b, char *move);
 
 //free
-void	free_all(t_node **head_a, t_node **head_b, char **matrix, int argc);
+void	free_all(t_vars *vars);
 void	free_matrix(char **matrix);
 void	free_stack(t_node **head);
 
 //sort
-void	sort(t_node **stack_a, t_node **stack_b, int n_args);
+void	sort(t_vars *vars);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:06:43 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/09 17:03:29 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:38:57 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,81 @@ t_node	*find_last_node(t_node *head)
 	return (current);
 }
 
-// size_t	list_size(t_node *head)
-// {
-// 	t_node *current;
-// 	size_t i;
+int	list_size(t_node *head)
+{
+	t_node *current;
+	size_t i;
 
-// 	current = head;
-// 	i = 0;
-// 	while(current)
-// 	{
-// 		i++;
-// 		current = current->next;
-// 	}
-// 	return (i);
-// }
+	current = head;
+	i = 0;
+	while(current)
+	{
+		i++;
+		current = current->next;
+	}
+	return (i);
+}
+
+t_node *find_biggest(t_node *head)
+{
+	t_node *current;
+	t_node *biggest;
+	
+	current = head;
+	biggest = head;
+	while(current)
+	{
+		if(current->data > biggest->data)
+			biggest = current;
+		current = current->next;
+	}
+	return(biggest);
+}
+
+t_node *find_smallest(t_node *head)
+{
+	t_node *current;
+	t_node *smallest;
+	
+	current = head;
+	smallest = head;
+	while(current)
+	{
+		if(current->data > smallest->data)
+			smallest = current;
+		current = current->next;
+	}
+	return(smallest);
+}
+
+t_node *find_cheaper(t_node *head)
+{
+	t_node *current;
+	t_node *cheaper;
+	
+	current = head;
+	cheaper = head;
+	while(current)
+	{
+		if(current->push_cost > cheaper->push_cost)
+			cheaper = current;
+		current = current->next;
+	}
+	return(cheaper);
+}
+
+t_node *find_smallest_bigger(t_node *head, int data)
+{
+	t_node *current;
+	t_node *smallest_bigger;
+
+	current = head;
+	smallest_bigger = find_bigger(head);
+	while(current)
+	{
+		if(current->data > data && current->data < smallest_bigger->data)
+			smallest_bigger = current;
+		current = current_next;
+	}
+	return(smallest_bigger)
+}

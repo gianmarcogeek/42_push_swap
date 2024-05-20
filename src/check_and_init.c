@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_checks.c                                     :+:      :+:    :+:   */
+/*   init_and_checks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/04/08 17:32:41 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/20 13:40:16 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	check_and_init(t_node **head, char **args, int n_args)
-{
-	int		i;
-	long	number;
-
-	i = 0;
-	while (i < n_args)
-	{
-		if (check_number(args[i]))
-		{
-			number = ft_atoll(args[i]);
-			if (number >= INT_MIN && number <= INT_MAX)
-				insert_in_stack(head, number);
-			else
-				ft_error(ERROR_SIZE);
-		}
-		else
-			ft_error(ERROR_INVALID);
-		i++;
-	}
-}
-
-bool	check_number(char *arg)
+static int	check_number(char *arg)
 {
 	int	i;
 
@@ -52,22 +30,66 @@ bool	check_number(char *arg)
 	return(1);
 }
 
-bool	check_for_dup(t_node *head)
+static int	check_for_dup(t_vars *vars)
 {
 	t_node	*current;
 	t_node	*compare;
 
-	current = head;
+	current = vars->stack_a;
 	while (current)
 	{
 		compare = current->next;
 		while (compare)
 		{
 			if (current->data == compare->data)
-				ft_error(ERROR_DOUBLE);
+				ft_error(vars, ERROR_DOUBLE);
 			compare = compare->next;
 		}
 		current = current->next;
 	}
 	return (0);
+}
+
+void	check_and_push(t_vars *vars)
+{
+	int		i;
+	long	number;
+
+	i = 0;
+	while (i < vars->n_args)
+	{
+		if (check_number(vars->args_str[i]))
+		{
+			number = ft_atoll(vars->args_str[i]);
+			if (number >= INT_MIN && number <= INT_MAX)
+				insert_in_stack(&vars->stack_a, number);
+			else
+				ft_error(vars, ERROR_SIZE);
+		}
+		else
+			ft_error(vars, ERROR_INVALID);
+		i++;
+	}
+	check_for_dup(vars);
+}
+
+void	init_vars(t_vars *vars, int argc, char *argv[])
+{
+	vars->stack_a = NULL;
+	vars->stack_b = NULL;
+	vars->args_str = NULL;
+	vars->n_args = 0;
+	vars->og_argc = argc;
+	if (argc < 2)
+		exit(1) ;
+	if (argc == 2)
+	{
+		vars->args_str = ft_split(argv[1], ' ');
+		vars->n_args = matrix_len(vars->args_str);
+	}
+	else if (argc > 2)
+	{
+		vars->args_str = argv + 1;
+		vars->n_args = argc - 1;
+	}
 }
