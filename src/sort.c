@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:55:32 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/20 19:37:15 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:47:41 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,30 @@ static void tiny_sort(t_vars *vars)
 	sort_two(vars);
 }
 
+void	move_nodes(t_vars *vars)
+{
+	t_node *cheapest;
+
+	cheapest = find_cheapest(vars->stack_b);
+	if (cheapest->above_median && cheapest->target->above_median)
+		do_both(&vars->stack_a, &vars->stack_b, "rotate");
+	else if (!(cheapest->above_median) && !(cheapest->target->above_median))
+		do_both(&vars->stack_a, &vars->stack_b, "rrotate");
+	push(&vars->stack_a, &vars->stack_b, 'a', 1);
+}
+
 static void	push_swap(t_vars *vars)
 {
 	while(vars->n_args-- > 3)
 		push(&vars->stack_a, &vars->stack_b, 'b', 1);
 	tiny_sort(vars);
-	while(vars->stack_b)
-	{
-		set_index(vars);
-		set_cost(vars);
-		
-	}
+	// while(vars->stack_b)
+	// {
+	// 	set_index(vars->stack_a);
+	// 	set_index(vars->stack_b);
+	// 	set_cost(vars);
+	// 	move_nodes(vars);
+	// }
 }
 
 void	sort(t_vars *vars)

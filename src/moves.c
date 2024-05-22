@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/20 13:45:41 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/22 02:10:58 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	rrotate(t_node **head, char stack, int print)
 		return ;
 	new_last = *head;
 	last = find_last_node(*head);
-	while(new_last->next->next)
+	while(new_last->next)
 		new_last = new_last->next;
 	new_last->next = NULL;
 	last->next = *head;

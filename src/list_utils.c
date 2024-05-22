@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:06:43 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/20 19:38:57 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:45:19 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	insert_in_stack(t_node **head, int value)
 		new_node = malloc(sizeof(t_node));
 		new_node->data = value;
 		new_node->next = NULL;
+		new_node->index = 0;
+		new_node->push_cost = 0;
+		new_node->target = NULL;
 		*head = new_node;
 	}
 	else
@@ -95,20 +98,20 @@ t_node *find_smallest(t_node *head)
 	return(smallest);
 }
 
-t_node *find_cheaper(t_node *head)
+t_node *find_cheapest(t_node *head)
 {
 	t_node *current;
-	t_node *cheaper;
+	t_node *cheapest;
 	
 	current = head;
-	cheaper = head;
+	cheapest = head;
 	while(current)
 	{
-		if(current->push_cost > cheaper->push_cost)
-			cheaper = current;
+		if(current->push_cost > cheapest->push_cost)
+			cheapest = current;
 		current = current->next;
 	}
-	return(cheaper);
+	return(cheapest);
 }
 
 t_node *find_smallest_bigger(t_node *head, int data)
@@ -117,12 +120,12 @@ t_node *find_smallest_bigger(t_node *head, int data)
 	t_node *smallest_bigger;
 
 	current = head;
-	smallest_bigger = find_bigger(head);
+	smallest_bigger = find_biggest(head);
 	while(current)
 	{
 		if(current->data > data && current->data < smallest_bigger->data)
 			smallest_bigger = current;
-		current = current_next;
+		current = current->next;
 	}
-	return(smallest_bigger)
+	return(smallest_bigger);
 }

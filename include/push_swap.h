@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/20 19:16:31 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:48:21 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 typedef struct s_node
 {
 	int				data;
-	int				push_cost;
 
+	int				push_cost;
+	int				index;
+	int				above_median;
 
 	struct s_node	*target;
 	struct s_node	*next;
@@ -52,6 +54,7 @@ int		list_size(t_node *head);
 t_node *find_biggest(t_node *head);
 t_node *find_smallest(t_node *head);
 t_node *find_smallest_bigger(t_node *head, int data);
+t_node *find_cheapest(t_node *head);
 
 
 //input_checks
@@ -71,6 +74,10 @@ void	free_stack(t_node **head);
 
 //sort
 void	sort(t_vars *vars);
+void	move_nodes(t_vars *vars);
 
+//target
+void	set_index(t_node *head);
+void	set_cost(t_vars *vars);
 
 #endif
