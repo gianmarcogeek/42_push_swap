@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:55:32 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 17:52:51 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:55:18 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,19 @@ static void tiny_sort(t_vars *vars)
 	sort_two(vars);
 }
 
-void	reload_meta(t_vars *vars)
+void	reload_meta_a(t_vars *vars)
+{
+	set_index(vars->stack_a);
+	set_index(vars->stack_b);
+	set_target_in_b(vars);
+	cost_analysis_a(vars);
+}
+
+void	reload_meta_b(t_vars *vars)
 {
 	set_index(vars->stack_a);
 	set_index(vars->stack_b);
 	set_target_in_a(vars);
-	cost_analysis_a(vars);
 }
 
 void	push_swap(t_vars *vars)
@@ -48,17 +55,17 @@ void	push_swap(t_vars *vars)
 		push(&vars->stack_a, &vars->stack_b, 'b', 1);
 	while(size_a-- > 3 && check_sorting(vars->stack_a))
 	{
-		reload_meta(vars);
-		//move_a_to_b()
+		reload_meta_a(vars);
+		move_a_to_b(vars);
 	}
 	tiny_sort(vars);
 	while(vars->stack_b)
 	{
-		//relaod_meta_b???
-		//move_b_to_a
+		reload_meta_b(vars);
+		move_b_to_a(vars);
 	}
-	//set_index_a
-	//ensure_min_is_on_top
+	set_index(vars->stack_a);
+	move_up(vars->stack_a, find_smallest(vars->stack_a), 'a');
 }
 
 void	sort(t_vars *vars)

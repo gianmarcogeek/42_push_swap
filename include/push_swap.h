@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 17:52:07 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:55:14 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	free_stack(t_node **head);
 
 //sort
 void	sort(t_vars *vars);
-void	reload_meta(t_vars *vars);
+void	reload_meta_a(t_vars *vars);
+void	reload_meta_b(t_vars *vars);
 void	push_swap(t_vars *vars);
 
 //target
@@ -84,5 +85,11 @@ void	set_index(t_node *head);
 void	set_target_in_a(t_vars *vars);
 void	set_target_in_b(t_vars *vars);
 void	cost_analysis_a(t_vars *vars);
+void	move_a_to_b(t_vars *vars);
+void	move_b_to_a(t_vars *vars);
+void	move_up(t_node *head, t_node *to_top, char stack);
+
+
+
 
 #endif
