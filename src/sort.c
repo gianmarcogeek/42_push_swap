@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:55:32 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 18:55:18 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:49:39 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,22 @@ static void tiny_sort(t_vars *vars)
 {
 	t_node *biggest = find_biggest(vars->stack_a);
 	if (vars->stack_a == biggest)
-		rotate(&vars->stack_a, 'a', 1);
-	else if (vars->stack_a->next == biggest)
 		rrotate(&vars->stack_a, 'a', 1);
+	else if (vars->stack_a->next == biggest)
+		rotate(&vars->stack_a, 'a', 1);
 	sort_two(vars);
 }
 
-void	reload_meta_a(t_vars *vars)
-{
-	set_index(vars->stack_a);
-	set_index(vars->stack_b);
-	set_target_in_b(vars);
-	cost_analysis_a(vars);
-}
-
-void	reload_meta_b(t_vars *vars)
-{
-	set_index(vars->stack_a);
-	set_index(vars->stack_b);
-	set_target_in_a(vars);
-}
-
-void	push_swap(t_vars *vars)
+static void	push_swap(t_vars *vars)
 {
 	int size_a;
 
 	size_a = list_size(vars->stack_a);
-	if(size_a-- > 3 && check_sorting(vars->stack_a))
+	if(size_a-- > 3 && !check_sorting(vars->stack_a))
 		push(&vars->stack_a, &vars->stack_b, 'b', 1);
-	if(size_a-- > 3 && check_sorting(vars->stack_a))
+	if(size_a-- > 3 && !check_sorting(vars->stack_a))
 		push(&vars->stack_a, &vars->stack_b, 'b', 1);
-	while(size_a-- > 3 && check_sorting(vars->stack_a))
+	while(size_a-- > 3 && !check_sorting(vars->stack_a))
 	{
 		reload_meta_a(vars);
 		move_a_to_b(vars);
@@ -64,8 +49,8 @@ void	push_swap(t_vars *vars)
 		reload_meta_b(vars);
 		move_b_to_a(vars);
 	}
-	set_index(vars->stack_a);
-	move_up(vars->stack_a, find_smallest(vars->stack_a), 'a');
+	set_index(&vars->stack_a);
+	move_up(&vars->stack_a, find_smallest(vars->stack_a), 'a');
 }
 
 void	sort(t_vars *vars)

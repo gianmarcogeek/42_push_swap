@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 18:55:14 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:48:42 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ void	display_stacks(t_node *head_a, t_node *head_b);
 void	ft_error(t_vars *vars, char *message);
 void	init_vars(t_vars *vars, int argc, char *argv[]);
 
-//list_utils
+//list_utils_0
 void	insert_in_stack(t_node **head, int value);
 t_node	*find_last_node(t_node *head);
 int		list_size(t_node *head);
 t_node *find_biggest(t_node *head);
 t_node *find_smallest(t_node *head);
+
+//list_utils_1
 t_node *find_smallest_bigger(t_node *head, int data);
 t_node *find_cheapest(t_node *head);
 t_node *find_closest_smaller(t_node *head, int data);
@@ -76,18 +78,17 @@ void	free_stack(t_node **head);
 
 //sort
 void	sort(t_vars *vars);
+
+//node_meta
 void	reload_meta_a(t_vars *vars);
 void	reload_meta_b(t_vars *vars);
-void	push_swap(t_vars *vars);
-
-//target
-void	set_index(t_node *head);
-void	set_target_in_a(t_vars *vars);
-void	set_target_in_b(t_vars *vars);
+void	set_index(t_node **head);
 void	cost_analysis_a(t_vars *vars);
+
+//smart_moves
 void	move_a_to_b(t_vars *vars);
 void	move_b_to_a(t_vars *vars);
-void	move_up(t_node *head, t_node *to_top, char stack);
+void	move_up(t_node **head, t_node *to_top, char stack);
 
 
 
