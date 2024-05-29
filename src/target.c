@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:28:19 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/22 02:07:18 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:54:16 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,49 +16,76 @@ void	set_index(t_node *head)
 {
 	t_node *current;
 	int i;
+	int half;
 	
+
+	if(!head)
+		return ;
 	current = head;
+	i = 0;
+	half = list_size(head) / 2;
 	while(current)
 	{
 		current->index = i++;
+		if (i <= half)
+			head->above_median = 1;
+		else
+			head->above_median = 0;
 		current = current->next;
 	}
 }
-static void	set_target_in_a(t_vars *vars, t_node *current_b)
+void	set_target_in_a(t_vars *vars)
 {
+	t_node *current_b;
 	t_node *smallest_bigger;
 	
-	smallest_bigger = find_smallest_bigger(vars->stack_a, current_b->data);
-	if(smallest_bigger)
-		current_b->target = smallest_bigger;
-	else
-	current_b->target = find_smallest(vars->stack_a);
-}
-
-void	set_cost(t_vars *vars)
-{
-	int size_a;
-	int size_b;
-	t_node *current_b;
-	
 	current_b = vars->stack_b;
+	smallest_bigger = find_smallest_bigger(vars->stack_a, current_b->data);
 	while(current_b)
 	{
-		size_a = list_size(vars->stack_a);
-		size_b = list_size(vars->stack_b);
-		set_target_in_a(vars, current_b);
-		if (current_b->index < size_b / 2)
-		{
-			current_b->above_median = 1;
-			current_b->push_cost = size_b - current_b->index;
-		}
-		if (current_b->target->index < size_a / 2)
-		{
-			current_b->target->above_median = 1;
-			current_b->push_cost = current_b->target->index;
-		}
+		if(smallest_bigger)
+			current_b->target = smallest_bigger;
 		else
-			current_b->push_cost += size_a - current_b->target->index;
+		current_b->target = find_smallest(vars->stack_a);
 		current_b = current_b->next;
+	}
+}
+
+void	set_target_in_b(t_vars *vars)
+{
+	t_node *current_a;
+	t_node *closest_smaller;
+	
+	current_a = vars->stack_a;
+	closest_smaller = find_closest_smaller(vars->stack_b, current_a->data);
+	while(current_a)
+	{		
+		if(closest_smaller)
+			current_a->target = closest_smaller;
+		else
+			current_a->target = find_biggest(vars->stack_b);
+		current_a = current_a->next;
+	}
+}
+
+void	cost_analysis_a(t_vars *vars)
+{
+	int len_a;
+	int len_b;
+	t_node *current_a;
+
+	len_a = list_size(vars->stack_a);
+	len_b = list_size(vars->stack_b);
+	current_a = vars->stack_a;
+	while(current_a)
+	{
+		current_a->push_cost = current_a->index;
+		if(!(current_a->above_median))
+			current_a->push_cost = len_a - current_a->index;
+		if(current_a->target->above_median)
+			current_a->push_cost += current_a->target->index;
+		else
+			current_a->push_cost += len_b - current_a->target->index;
+		current_a = current_a->next;
 	}
 }

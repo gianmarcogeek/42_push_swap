@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:55:32 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/22 12:47:41 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:52:51 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	sort_two(t_vars *vars)
 {
+	if(vars->stack_a && vars->stack_a->next)
 		if (vars->stack_a->data > vars->stack_a->next->data)
 			swap(&vars->stack_a, 'a', 1);
 }
@@ -28,30 +29,36 @@ static void tiny_sort(t_vars *vars)
 	sort_two(vars);
 }
 
-void	move_nodes(t_vars *vars)
+void	reload_meta(t_vars *vars)
 {
-	t_node *cheapest;
-
-	cheapest = find_cheapest(vars->stack_b);
-	if (cheapest->above_median && cheapest->target->above_median)
-		do_both(&vars->stack_a, &vars->stack_b, "rotate");
-	else if (!(cheapest->above_median) && !(cheapest->target->above_median))
-		do_both(&vars->stack_a, &vars->stack_b, "rrotate");
-	push(&vars->stack_a, &vars->stack_b, 'a', 1);
+	set_index(vars->stack_a);
+	set_index(vars->stack_b);
+	set_target_in_a(vars);
+	cost_analysis_a(vars);
 }
 
-static void	push_swap(t_vars *vars)
+void	push_swap(t_vars *vars)
 {
-	while(vars->n_args-- > 3)
+	int size_a;
+
+	size_a = list_size(vars->stack_a);
+	if(size_a-- > 3 && check_sorting(vars->stack_a))
 		push(&vars->stack_a, &vars->stack_b, 'b', 1);
+	if(size_a-- > 3 && check_sorting(vars->stack_a))
+		push(&vars->stack_a, &vars->stack_b, 'b', 1);
+	while(size_a-- > 3 && check_sorting(vars->stack_a))
+	{
+		reload_meta(vars);
+		//move_a_to_b()
+	}
 	tiny_sort(vars);
-	// while(vars->stack_b)
-	// {
-	// 	set_index(vars->stack_a);
-	// 	set_index(vars->stack_b);
-	// 	set_cost(vars);
-	// 	move_nodes(vars);
-	// }
+	while(vars->stack_b)
+	{
+		//relaod_meta_b???
+		//move_b_to_a
+	}
+	//set_index_a
+	//ensure_min_is_on_top
 }
 
 void	sort(t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/22 12:48:21 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:52:07 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 typedef struct s_node
 {
 	int				data;
-
-	int				push_cost;
+	
 	int				index;
+	int				push_cost;
 	int				above_median;
-
 	struct s_node	*target;
+	
 	struct s_node	*next;
 }	t_node;
 
@@ -55,6 +55,8 @@ t_node *find_biggest(t_node *head);
 t_node *find_smallest(t_node *head);
 t_node *find_smallest_bigger(t_node *head, int data);
 t_node *find_cheapest(t_node *head);
+t_node *find_closest_smaller(t_node *head, int data);
+int	check_sorting(t_node *head);
 
 
 //input_checks
@@ -74,10 +76,13 @@ void	free_stack(t_node **head);
 
 //sort
 void	sort(t_vars *vars);
-void	move_nodes(t_vars *vars);
+void	reload_meta(t_vars *vars);
+void	push_swap(t_vars *vars);
 
 //target
 void	set_index(t_node *head);
-void	set_cost(t_vars *vars);
+void	set_target_in_a(t_vars *vars);
+void	set_target_in_b(t_vars *vars);
+void	cost_analysis_a(t_vars *vars);
 
 #endif
