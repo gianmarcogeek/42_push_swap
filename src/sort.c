@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:55:32 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:49:39 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:25:50 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,15 @@ static void	sort_two(t_vars *vars)
 
 static void tiny_sort(t_vars *vars)
 {
-	t_node *biggest = find_biggest(vars->stack_a);
-	if (vars->stack_a == biggest)
-		rrotate(&vars->stack_a, 'a', 1);
-	else if (vars->stack_a->next == biggest)
-		rotate(&vars->stack_a, 'a', 1);
-	sort_two(vars);
+	if (!check_sorting(vars->stack_a))
+	{
+		t_node *biggest = find_biggest(vars->stack_a);
+		if (vars->stack_a == biggest)
+			rotate(&vars->stack_a, 'a', 1);
+		else if (vars->stack_a->next == biggest)
+			rrotate(&vars->stack_a, 'a', 1);
+		sort_two(vars);
+	}
 }
 
 static void	push_swap(t_vars *vars)
@@ -51,6 +54,8 @@ static void	push_swap(t_vars *vars)
 	}
 	set_index(&vars->stack_a);
 	move_up(&vars->stack_a, find_smallest(vars->stack_a), 'a');
+	while(!check_sorting(vars->stack_a))
+		push_swap(vars);
 }
 
 void	sort(t_vars *vars)

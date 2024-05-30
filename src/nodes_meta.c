@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:28:19 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:49:18 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:22:14 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	set_target_in_a(t_vars *vars)
 	t_node *smallest_bigger;
 	
 	current_b = vars->stack_b;
-	smallest_bigger = find_smallest_bigger(vars->stack_a, current_b->data);
 	while(current_b)
 	{
+		smallest_bigger = find_smallest_bigger(vars->stack_a, current_b->data);
 		if(smallest_bigger)
 			current_b->target = smallest_bigger;
 		else
@@ -35,9 +35,9 @@ static void	set_target_in_b(t_vars *vars)
 	t_node *closest_smaller;
 	
 	current_a = vars->stack_a;
-	closest_smaller = find_closest_smaller(vars->stack_b, current_a->data);
 	while(current_a)
 	{		
+		closest_smaller = find_closest_smaller(vars->stack_b, current_a->data);
 		if(closest_smaller)
 			current_a->target = closest_smaller;
 		else
@@ -77,9 +77,9 @@ void	set_index(t_node **head)
 	{
 		current->index = i++;
 		if (i <= half)
-			(*head)->above_median = 1;
+			current->above_median = 1;
 		else
-			(*head)->above_median = 0;
+			current->above_median = 0;
 		current = current->next;
 	}
 }

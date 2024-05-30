@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/22 01:46:22 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:01:49 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	init_vars(t_vars *vars, int argc, char *argv[])
 	vars->args_str = NULL;
 	vars->n_args = 0;
 	vars->og_argc = argc;
+	set_index(&vars->stack_a);
+	set_index(&vars->stack_b);
 	if (argc < 2)
 		exit(1) ;
 	if (argc == 2)

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:46:56 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:53:30 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,16 @@ void	do_both(t_node **head_a, t_node **head_b, char *move)
 	{
 		rotate(head_a, 'a', 0);
 		rotate(head_b, 'b', 0);
+		set_index(head_a);
+		set_index(head_b);
 		ft_printf("rr\n");
 	}
 	else if(ft_strncmp(move, "rrotate", 7) == 0)
 	{
 		rrotate(head_a, 'a', 0);
 		rrotate(head_b, 'b', 0);
+		set_index(head_a);
+		set_index(head_b);
 		ft_printf("rrr\n");
 	}
 }

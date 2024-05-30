@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/home/gianmarco/Desktop/common/push_swap/push_swap",
-			"args": ["1 2 3 5 4 43 -32"],
+			"args": ["5 1 2 3 4"],
 			"stopAtEntry": false,
 			"cwd": "/home/gianmarco/Desktop/common/push_swap",
 			"environment": [],
