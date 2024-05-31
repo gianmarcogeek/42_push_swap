@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:55:32 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/30 23:25:50 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:54:35 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ static void	push_swap(t_vars *vars)
 	}
 	set_index(&vars->stack_a);
 	move_up(&vars->stack_a, find_smallest(vars->stack_a), 'a');
-	while(!check_sorting(vars->stack_a))
-		push_swap(vars);
+	// while(!check_sorting(vars->stack_a))
+	// 	push_swap(vars);
 }
 
 void	sort(t_vars *vars)

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:00:28 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:04:18 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:54:21 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ t_node *find_smallest_bigger(t_node *head, int data)
 
 	current = head;
 	smallest_bigger = find_biggest(head);
+	if (!(smallest_bigger->data > data))
+		return (NULL);
 	while(current)
 	{
 		if(current->data > data && current->data < smallest_bigger->data)
@@ -51,6 +53,8 @@ t_node *find_closest_smaller(t_node *head, int data)
 
 	current = head;
 	closest_smaller = find_smallest(head);
+	if (!(closest_smaller->data < data))
+		return (NULL);
 	while(current)
 	{
 		if(current->data < data && current->data > closest_smaller->data)
