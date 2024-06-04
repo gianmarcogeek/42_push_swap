@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:40:49 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/20 13:40:10 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:03:19 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 void	ft_error(t_vars *vars, char *message)
 {
-	ft_printf("\n\e[41m\e[1m Error! \e[0m %s\n\n", message);
+	char *error = ft_strjoin("Error!\n", message);
+	ft_putendl_fd(error, 2);
+	free(error);
 	free_all(vars);
 	exit(1);
+}
+
+int	is_whitespace(char c)
+{
+	if(c <= 32)
+		return (1);
+	return (0);
 }
 
 int	matrix_len(char **matrix)

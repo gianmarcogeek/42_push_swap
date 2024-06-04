@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/04 21:15:41 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:08:26 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	check_number(char *arg)
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
-	if (ft_strlen(arg) >= 10)
-		return (0);
 	if(arg[i] == '\0')
 		return (0);
 	while (arg[i])
@@ -63,7 +61,7 @@ void	check_and_push(t_vars *vars)
 		if (check_number(vars->args_str[i]))
 		{
 			number = ft_atoll(vars->args_str[i]);
-			if (number >= INT_MIN && number <= INT_MAX)
+			if ((number >= INT_MIN && number <= INT_MAX) && !(ft_strlen(vars->args_str[i]) > 10))
 				insert_in_stack(&vars->stack_a, number);
 			else
 				ft_error(vars, ERROR_SIZE);
@@ -74,7 +72,7 @@ void	check_and_push(t_vars *vars)
 	}
 	check_for_dup(vars);
 }
-
+	
 void	init_vars(t_vars *vars, int argc, char *argv[])
 {
 	vars->stack_a = NULL;
@@ -82,18 +80,23 @@ void	init_vars(t_vars *vars, int argc, char *argv[])
 	vars->args_str = NULL;
 	vars->n_args = 0;
 	vars->og_argc = argc;
-	set_index(&vars->stack_a);
-	set_index(&vars->stack_b);
 	if (argc < 2)
 		exit(1) ;
 	if (argc == 2)
 	{
-		vars->args_str = ft_split(argv[1], ' ');
-		vars->n_args = matrix_len(vars->args_str);
+		if(argv[1] != NULL && argv[1][0] != '\0' && !is_whitespace(argv[1][0]))
+		{
+			vars->args_str = ft_split(argv[1], ' ');
+			vars->n_args = matrix_len(vars->args_str);
+		}
+		else
+			exit(1);
 	}
 	else if (argc > 2)
 	{
 		vars->args_str = argv + 1;
 		vars->n_args = argc - 1;
 	}
+	set_index(&vars->stack_a);
+	set_index(&vars->stack_b);
 }

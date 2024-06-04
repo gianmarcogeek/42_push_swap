@@ -6,13 +6,15 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/04 21:17:14 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:58:34 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* TO-DO
-- correggere segfault ./push_swap "" & ./push_swap " "
 - printare gli error sullo std error
+- correggere makefile con compilazione obj
+- togliere flag -g
+- capire meglio algoritmo e ottimizzare alcuni step
 */
 
 #include "../include/push_swap.h"

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:48:42 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:51:27 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_vars
 
 //utils
 int		matrix_len(char **matrix);
+int		is_whitespace(char c);
 void	display_stacks(t_node *head_a, t_node *head_b);
 void	ft_error(t_vars *vars, char *message);
 void	init_vars(t_vars *vars, int argc, char *argv[]);
@@ -59,7 +60,6 @@ t_node *find_smallest_bigger(t_node *head, int data);
 t_node *find_cheapest(t_node *head);
 t_node *find_closest_smaller(t_node *head, int data);
 int	check_sorting(t_node *head);
-
 
 //input_checks
 void	check_and_push(t_vars *vars);
@@ -89,8 +89,5 @@ void	cost_analysis_a(t_vars *vars);
 void	move_a_to_b(t_vars *vars);
 void	move_b_to_a(t_vars *vars);
 void	move_up(t_node **head, t_node *to_top, char stack);
-
-
-
 
 #endif
