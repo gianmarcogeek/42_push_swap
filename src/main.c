@@ -6,9 +6,14 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/30 23:59:06 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:17:14 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* TO-DO
+- correggere segfault ./push_swap "" & ./push_swap " "
+- printare gli error sullo std error
+*/
 
 #include "../include/push_swap.h"
 

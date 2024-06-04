@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:02:46 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:36:08 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 20:56:13 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	move_a_to_b(t_vars *vars)
 	if(!(cheapest->above_median) && !(cheapest->target->above_median))
 		do_both(&vars->stack_a, &vars->stack_b, "rrotate");
 	move_up(&vars->stack_a, cheapest, 'a');
-	move_up(&vars->stack_b, cheapest->target, 'a');
+	move_up(&vars->stack_b, cheapest->target, 'b');
 	push(&vars->stack_a, &vars->stack_b, 'b', 1);
 }
 

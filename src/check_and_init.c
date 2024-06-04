@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/30 16:01:49 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:15:41 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	check_number(char *arg)
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
 		i++;
+	if (ft_strlen(arg) >= 10)
+		return (0);
 	if(arg[i] == '\0')
 		return (0);
 	while (arg[i])
