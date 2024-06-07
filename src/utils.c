@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utlis.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:40:49 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/04 23:03:19 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/07 01:05:45 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	ft_error(t_vars *vars, char *message)
 {
-	char *error = ft_strjoin("Error!\n", message);
-	ft_putendl_fd(error, 2);
-	free(error);
+	ft_putendl_fd("Error!", 2);
+	ft_putendl_fd(message, 2);
 	free_all(vars);
 	exit(1);
 }
 
 int	is_whitespace(char c)
 {
-	if(c <= 32)
+	if (c <= 32)
 		return (1);
 	return (0);
 }
@@ -38,6 +37,7 @@ int	matrix_len(char **matrix)
 	return (i);
 }
 
+/*
 void	display_stacks(t_node *head_a, t_node *head_b)
 {
 	t_node	*current;
@@ -65,3 +65,4 @@ void	display_stacks(t_node *head_a, t_node *head_b)
 		}
 	}
 }
+*/
