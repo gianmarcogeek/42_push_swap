@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:41:37 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/04 23:08:26 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:39:09 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	check_and_push(t_vars *vars)
 	long	number;
 
 	i = 0;
+	number = 0;
 	while (i < vars->n_args)
 	{
 		if (check_number(vars->args_str[i]))
@@ -80,14 +81,12 @@ void	init_vars(t_vars *vars, int argc, char *argv[])
 	vars->args_str = NULL;
 	vars->n_args = 0;
 	vars->og_argc = argc;
-	if (argc < 2)
-		exit(1) ;
 	if (argc == 2)
 	{
-		if(argv[1] != NULL && argv[1][0] != '\0' && !is_whitespace(argv[1][0]))
+		if(argv[1] != NULL && argv[1][0] != '\0' && !ft_iswhitespace(argv[1][0]))
 		{
 			vars->args_str = ft_split(argv[1], ' ');
-			vars->n_args = matrix_len(vars->args_str);
+			vars->n_args = ft_matlen(vars->args_str);
 		}
 		else
 			exit(1);
@@ -97,6 +96,16 @@ void	init_vars(t_vars *vars, int argc, char *argv[])
 		vars->args_str = argv + 1;
 		vars->n_args = argc - 1;
 	}
-	set_index(&vars->stack_a);
-	set_index(&vars->stack_b);
+	else
+		exit (1);
+}
+
+void	init_meta(t_node **new_node, int value)
+{
+	(*new_node)->data = value;
+	(*new_node)->index = 0;
+	(*new_node)->push_cost = 0;
+	(*new_node)->above_median = 0;
+	(*new_node)->target = NULL;
+	(*new_node)->next = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/04 22:51:27 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:28:53 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 typedef struct s_node
 {
 	int				data;
-	
 	int				index;
 	int				push_cost;
 	int				above_median;
 	struct s_node	*target;
-	
 	struct s_node	*next;
 }	t_node;
 
@@ -42,10 +40,10 @@ typedef struct s_vars
 }	t_vars;
 
 //utils
-int		matrix_len(char **matrix);
-int		is_whitespace(char c);
 void	display_stacks(t_node *head_a, t_node *head_b);
 void	ft_error(t_vars *vars, char *message);
+
+//check_and_init
 void	init_vars(t_vars *vars, int argc, char *argv[]);
 
 //list_utils_0
@@ -80,6 +78,7 @@ void	free_stack(t_node **head);
 void	sort(t_vars *vars);
 
 //node_meta
+void	init_meta(t_node **new_node, int value);
 void	reload_meta_a(t_vars *vars);
 void	reload_meta_b(t_vars *vars);
 void	set_index(t_node **head);

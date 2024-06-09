@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:20 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/07 01:02:43 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:32:30 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
-	
+
 	init_vars(&vars, argc, argv);
 	check_and_push(&vars);
 	if (!check_sorting(vars.stack_a))

@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:06:43 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 19:00:16 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:30:18 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,14 @@ void	insert_in_stack(t_node **head, int value)
 	if (*head == NULL)
 	{
 		new_node = malloc(sizeof(t_node));
-		new_node->data = value;
-		new_node->next = NULL;
-		new_node->index = 0;
-		new_node->push_cost = 0;
-		new_node->target = NULL;
+		init_meta(&new_node, value);
 		*head = new_node;
 	}
 	else
 	{
 		last = find_last_node(*head);
 		new_node = malloc(sizeof(t_node));
-		new_node->data = value;
-		new_node->next = NULL;
+		init_meta(&new_node, value);
 		last->next = new_node;
 	}
 }
