@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 15:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/09 13:28:53 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:52:45 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ typedef struct s_vars
 }	t_vars;
 
 //utils
-void	display_stacks(t_node *head_a, t_node *head_b);
+//void	display_stacks(t_node *head_a, t_node *head_b);
+void	set_target_in_a(t_vars *vars);
+void	set_target_in_b(t_vars *vars);
 void	ft_error(t_vars *vars, char *message);
 
 //check_and_init
@@ -50,14 +52,14 @@ void	init_vars(t_vars *vars, int argc, char *argv[]);
 void	insert_in_stack(t_node **head, int value);
 t_node	*find_last_node(t_node *head);
 int		list_size(t_node *head);
-t_node *find_biggest(t_node *head);
-t_node *find_smallest(t_node *head);
+t_node	*find_biggest(t_node *head);
+t_node	*find_smallest(t_node *head);
 
 //list_utils_1
-t_node *find_smallest_bigger(t_node *head, int data);
-t_node *find_cheapest(t_node *head);
-t_node *find_closest_smaller(t_node *head, int data);
-int	check_sorting(t_node *head);
+t_node	*find_smallest_bigger(t_node *head, int data);
+t_node	*find_cheapest(t_node *head);
+t_node	*find_closest_smaller(t_node *head, int data);
+int		check_sorting(t_node *head);
 
 //input_checks
 void	check_and_push(t_vars *vars);

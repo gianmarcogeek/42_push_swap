@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:36:30 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/04 22:49:56 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:34:57 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ void	free_all(t_vars *vars)
 	if (vars->stack_a)
 		free_stack(&vars->stack_a);
 	if (vars->stack_b)
-		free_stack(&vars->stack_b);	
+		free_stack(&vars->stack_b);
 }
+
 void	free_matrix(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(matrix[i])
+	while (matrix[i])
 	{
 		free(matrix[i]);
 		i++;
@@ -37,13 +38,12 @@ void	free_matrix(char **matrix)
 
 void	free_stack(t_node **head)
 {
-	t_node *temp;
+	t_node	*temp;
 
-	while(*head)
+	while (*head)
 	{
 		temp = *head;
 		*head = (*head)->next;
 		free(temp);
 	}
 }
-

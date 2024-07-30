@@ -45,6 +45,7 @@ clean:
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(FT_PRINTF_DIR) clean
 	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "$(BOLD)$(RED)Full cleaning...$(RESET)"

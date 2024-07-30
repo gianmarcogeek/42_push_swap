@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:35:39 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/05/29 22:53:30 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:32:21 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,56 @@
 
 void	swap(t_node **head, char stack, int print)
 {
-	t_node *tmp;
+	t_node	*tmp;
 
-	if(!head || !(*head) || !((*head)->next))
+	if (!head || !(*head) || !((*head)->next))
 		return ;
 	tmp = *head;
 	*head = (*head)->next;
 	tmp->next = (*head)->next;
 	(*head)->next = tmp;
-	if(print)
+	if (print)
 		ft_printf("s%c\n", stack);
 }
 
 void	rotate(t_node **head, char stack, int print)
 {
-	t_node *last;
-	t_node *tmp;
+	t_node	*last;
+	t_node	*tmp;
 
-	if(!head || !(*head))
+	if (!head || !(*head))
 		return ;
 	last = find_last_node(*head);
 	tmp = *head;
-
 	*head = (*head)->next;
 	last->next = tmp;
 	tmp->next = NULL;
-	if(print)
+	if (print)
 		ft_printf("r%c\n", stack);
 }
 
 void	rrotate(t_node **head, char stack, int print)
 {
-	t_node *last;
-	t_node *new_last;
+	t_node	*last;
+	t_node	*new_last;
 
-	if(!head || !(*head))
+	if (!head || !(*head))
 		return ;
 	new_last = *head;
 	last = find_last_node(*head);
-	while(new_last->next && new_last->next != last)
+	while (new_last->next && new_last->next != last)
 		new_last = new_last->next;
 	new_last->next = NULL;
 	last->next = *head;
 	*head = last;
-	if(print)
+	if (print)
 		ft_printf("rr%c\n", stack);
 }
 
 void	push(t_node **head_a, t_node **head_b, char stack, int print)
 {
-	t_node *tmp;
-	
+	t_node	*tmp;
+
 	if (stack == 'b' && *head_a)
 	{
 		tmp = *head_a;
@@ -87,14 +86,13 @@ void	push(t_node **head_a, t_node **head_b, char stack, int print)
 
 void	do_both(t_node **head_a, t_node **head_b, char *move)
 {
-	
-	if(ft_strncmp(move, "swap", 4) == 0)
+	if (ft_strncmp(move, "swap", 4) == 0)
 	{
 		swap(head_a, 'a', 0);
 		swap(head_b, 'b', 0);
 		ft_printf("ss\n");
 	}
-	else if(ft_strncmp(move, "rotate", 6) == 0)
+	else if (ft_strncmp(move, "rotate", 6) == 0)
 	{
 		rotate(head_a, 'a', 0);
 		rotate(head_b, 'b', 0);
@@ -102,7 +100,7 @@ void	do_both(t_node **head_a, t_node **head_b, char *move)
 		set_index(head_b);
 		ft_printf("rr\n");
 	}
-	else if(ft_strncmp(move, "rrotate", 7) == 0)
+	else if (ft_strncmp(move, "rrotate", 7) == 0)
 	{
 		rrotate(head_a, 'a', 0);
 		rrotate(head_b, 'b', 0);

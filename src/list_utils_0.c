@@ -6,7 +6,7 @@
 /*   By: gpuscedd <gpuscedd@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 17:06:43 by gpuscedd          #+#    #+#             */
-/*   Updated: 2024/06/09 13:30:18 by gpuscedd         ###   ########.fr       */
+/*   Updated: 2024/07/30 22:43:28 by gpuscedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ t_node	*find_last_node(t_node *head)
 
 int	list_size(t_node *head)
 {
-	t_node *current;
-	size_t i;
+	t_node	*current;
+	size_t	i;
 
 	current = head;
 	i = 0;
-	while(current)
+	while (current)
 	{
 		i++;
 		current = current->next;
@@ -61,34 +61,34 @@ int	list_size(t_node *head)
 	return (i);
 }
 
-t_node *find_biggest(t_node *head)
+t_node	*find_biggest(t_node *head)
 {
-	t_node *current;
-	t_node *biggest;
-	
+	t_node	*current;
+	t_node	*biggest;
+
 	current = head;
 	biggest = head;
-	while(current)
+	while (current)
 	{
-		if(current->data > biggest->data)
+		if (current->data > biggest->data)
 			biggest = current;
 		current = current->next;
 	}
-	return(biggest);
+	return (biggest);
 }
 
-t_node *find_smallest(t_node *head)
+t_node	*find_smallest(t_node *head)
 {
-	t_node *current;
-	t_node *smallest;
-	
+	t_node	*current;
+	t_node	*smallest;
+
 	current = head;
 	smallest = head;
-	while(current)
+	while (current)
 	{
-		if(current->data < smallest->data)
+		if (current->data < smallest->data)
 			smallest = current;
 		current = current->next;
 	}
-	return(smallest);
+	return (smallest);
 }
